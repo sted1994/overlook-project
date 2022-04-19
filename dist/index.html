@@ -7,10 +7,27 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+
+  <nav class="nav-bar">
+    <svg>
+      <img class="hotel-logo" src="./images/Lotus-Flower.svg" alt="Lotus logo">
+    </svg>
+    <form class="login-form" action="index.html" method="get">
+      <input placeholder="Username" type="text" name="username">
+      <input placeholder="Password" type="text" name="password">
+      <button type="submit" name="login">Log In</button>
+    </form>
+    <button type="button" name="view-profile">View Profile</button>
+  </nav>
+  <page>
+    <img src="../images/Overlook.png" alt="View from a room overlooking a jungle canopy that runs into the ocean">
+  </page>
+  <page class="user-profile">
+    <article>
+      bookings:
+    </article>
+  </page>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>
