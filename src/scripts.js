@@ -10,4 +10,4 @@ import { getData } from './api-calls.js'
 import './images/Lotus-Flower.svg'
 //import './images/overlook.jpeg'
 console.log('This is the JavaScript entry file - your code begins here.');
-getData('bookings')
+getData('rooms')
