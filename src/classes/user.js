@@ -5,6 +5,7 @@ class User{
     this.bookings;
     this.totalSpent;
   }
+
   getBookings(allBookings){
     this.bookings = allBookings.filter(booking => booking.userID === this.id)
   }
