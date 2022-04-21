@@ -4,27 +4,152 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>The Overlook Hotel</title>
 </head>
 <body>
-
-  <nav class="nav-bar">
-    <svg>
+  <page class='home-page'>
+    <section class='login'>
       <img class="hotel-logo" src="./images/Lotus-Flower.svg" alt="Lotus logo">
-    </svg>
-    <form class="login-form" action="index.html" method="get">
-      <input placeholder="Username" type="text" name="username">
-      <input placeholder="Password" type="text" name="password">
-      <button type="submit" name="login">Log In</button>
-    </form>
-    <button type="button" name="view-profile">View Profile</button>
-  </nav>
-  <page>
-    <img src="../images/Overlook.png" alt="View from a room overlooking a jungle canopy that runs into the ocean">
+      <h1>Welcome To The Overlook Hotel</h1>
+      <section class="login-container">
+        <form class="login-form" action="index.html" method="get">
+          <input id="user-name-input" placeholder="Username" type="text" name="username">
+          <input id="password-input" placeholder="Password" type="text" name="password">
+          <button type="submit" id="login-button" name="login">Log In</button>
+        </form>
+      </section>
+    </section>
   </page>
-  <page class="user-profile">
-    <article>
-      bookings:
+  <page class="main-page hidden">
+    <img class="hotel-logo" src="./images/Lotus-Flower.svg" alt="Lotus logo">
+    <h2>Welcome Back <span class="username">Tyler</span></h2>
+    <article class="dashboard">
+      <h3>You have spent <span class="spending-total">$10,000</span> with us so far.</h3>
+      <button>Make a new reservation</button>
+      <section class="reservations">
+        <section class="reservations-scroller">
+          <p>Your previous Reservations:</p>
+          <aside class="reservation-display">
+            <div class="scroller">
+              <article class="reservation">
+                <p>Room Type</p>
+                <img class="room-image" src="./images/Overlook.png" alt="test">
+                <div class="bed-information">
+                  <p>Bed Size: <span class="bed-size">Queen</span></p>
+                  <p>Number of beds: <span class="bed">2</span></p>
+                </div>
+                <p>Price Per Night: <span class="cost-per-night">$500</span></p>
+              </article>
+              <article class="reservation">
+                <p>Room Type</p>
+                <img class="room-image" src="./images/Overlook.png" alt="test">
+                <div class="bed-information">
+                  <p>Bed Size: <span class="bed-size">Queen</span></p>
+                  <p>Number of beds: <span class="bed">2</span></p>
+                </div>
+                <p>Price Per Night: <span class="cost-per-night">$500</span></p>
+              </article>
+              <article class="reservation">
+                <p>Room Type</p>
+                <img class="room-image" src="./images/Overlook.png" alt="test">
+                <div class="bed-information">
+                  <p>Bed Size: <span class="bed-size">Queen</span></p>
+                  <p>Number of beds: <span class="bed">2</span></p>
+                </div>
+                <p>Price Per Night: <span class="cost-per-night">$500</span></p>
+              </article>
+              <article class="reservation">
+                <p>Room Type</p>
+                <img class="room-image" src="./images/Overlook.png" alt="test">
+                <div class="bed-information">
+                  <p>Bed Size: <span class="bed-size">Queen</span></p>
+                  <p>Number of beds: <span class="bed">2</span></p>
+                </div>
+                <p>Price Per Night: <span class="cost-per-night">$500</span></p>
+              </article>
+              <article class="reservation">
+                <p>Room Type</p>
+                <img class="room-image" src="./images/Overlook.png" alt="test">
+                <div class="bed-information">
+                  <p>Bed Size: <span class="bed-size">Queen</span></p>
+                  <p>Number of beds: <span class="bed">2</span></p>
+                </div>
+                <p>Price Per Night: <span class="cost-per-night">$500</span></p>
+              </article>
+            </div>
+            <!-- Where past reservations will appear -->
+          </aside>
+        </section>
+        <section class="reservations-scroller">
+          <p>Your future Reservations:</p>
+          <aside class="reservation-display">
+            <div class="scroller">
+              <article class="reservation">
+                <p>Room Type</p>
+                <img class="room-image" src="./images/Overlook.png" alt="test">
+                <div class="bed-information">
+                  <p>Bed Size: <span class="bed-size">Queen</span></p>
+                  <p>Number of beds: <span class="bed">2</span></p>
+                </div>
+                <p>Price Per Night: <span class="cost-per-night">$500</span></p>
+              </article>
+              <article class="reservation">
+                <p>Room Type</p>
+                <img class="room-image" src="./images/Overlook.png" alt="test">
+                <div class="bed-information">
+                  <p>Bed Size: <span class="bed-size">Queen</span></p>
+                  <p>Number of beds: <span class="bed">2</span></p>
+                </div>
+                <p>Price Per Night: <span class="cost-per-night">$500</span></p>
+              </article>
+              <article class="reservation">
+                <p>Room Type</p>
+                <img class="room-image" src="./images/Overlook.png" alt="test">
+                <div class="bed-information">
+                  <p>Bed Size: <span class="bed-size">Queen</span></p>
+                  <p>Number of beds: <span class="bed">2</span></p>
+                </div>
+                <p>Price Per Night: <span class="cost-per-night">$500</span></p>
+              </article>
+              <article class="reservation">
+                <p>Room Type</p>
+                <img class="room-image" src="./images/Overlook.png" alt="test">
+                <div class="bed-information">
+                  <p>Bed Size: <span class="bed-size">Queen</span></p>
+                  <p>Number of beds: <span class="bed">2</span></p>
+                </div>
+                <p>Price Per Night: <span class="cost-per-night">$500</span></p>
+              </article>
+              <article class="reservation">
+                <p>Room Type</p>
+                <img class="room-image" src="./images/Overlook.png" alt="test">
+                <div class="bed-information">
+                  <p>Bed Size: <span class="bed-size">Queen</span></p>
+                  <p>Number of beds: <span class="bed">2</span></p>
+                </div>
+                <p>Price Per Night: <span class="cost-per-night">$500</span></p>
+              </article>
+            </div>
+            <!-- Where future reservations will appear -->
+          </aside>
+        </section>
+      </section>
+    </article>
+  </page>
+  <page class="main-page hidden">
+    <img class="hotel-logo" src="./images/Lotus-Flower.svg" alt="Lotus logo">
+    <article class="dashboard">
+      <form class="search-rooms" action="index.html" method="get">
+        <input class="date-search-field" type="date" name="" value="">
+        <select class="search-field" name="reservation-filter" id="rooms">
+          <option value="Select">*Optional* Room Type</option>
+          <option value="Residental Suite">Residental Suite</option>
+          <option value="Suite">Suite</option>
+          <option value="Juinor Sweet">Juinor Sweet</option>
+          <option value="Single Room">Single Room</option>
+        </select>
+        <button class="reservation-submit-btn" type="submit">Find Rooms</button>
+      </form>
     </article>
   </page>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
