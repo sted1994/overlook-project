@@ -29,6 +29,7 @@ const filteredReservations = document.getElementById('filtered-reservations')
 const resetFilterButton = document.getElementById('reset-filter-btn')
 const reservationError = document.querySelector('.reservation-error')
 const dashboard = document.querySelectorAll('.dashboard')
+const loginError = document.querySelector('.login-error')
 let hotelData;
 let customer;
 
@@ -43,6 +44,8 @@ loginButton.addEventListener('click', (event) => {
     if(assignUser(userNameInput.value, passwordInput.value, hotelData.customers) === true){
       showElement([dashboardPage, mainPage, reservationPage], mainPage)
       renderDashboard()
+    } else {
+      renderUserError(loginError, "Either the Username or Password you have entered is incorrect")
     }
 })
 
@@ -129,7 +132,6 @@ const renderAvaiableRooms = (date, roomType, event) => {
     })
   } else {
     filteredReservations.innerHTML = ""
-    // dashboard[1].style.justifyContent = ""
     renderUserError(reservationError, "Please make sure to specify a date you would like to book with us")
   }
 }

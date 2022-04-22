@@ -7,7 +7,7 @@
   <title>The Overlook Hotel</title>
 </head>
 <body>
-  <page class='home-page hidden'>
+  <page class='home-page'>
     <section class='login'>
       <img class="hotel-logo" src="./images/Lotus-Flower.svg" alt="Lotus logo">
       <h1>Welcome To The Overlook Hotel</h1>
@@ -17,6 +17,7 @@
           <input id="password-input" placeholder="Password" type="text" name="password">
           <button type="submit" id="login-button" name="login">Log In</button>
         </form>
+        <p class="login-error"></p>
       </section>
     </section>
   </page>
@@ -46,7 +47,7 @@
       </section>
     </article>
   </page>
-  <page class="make-reservation-page">
+  <page class="make-reservation-page hidden">
     <img class="hotel-logo" src="./images/Lotus-Flower.svg" alt="Lotus logo">
     <article class="dashboard">
       <div class="filter-input-field">

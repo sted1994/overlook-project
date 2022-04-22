@@ -19,6 +19,7 @@ body {
   background: black;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   height: 300px;
   justify-content: center;
   opacity: .7;
@@ -39,6 +40,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.login-error{
+  background-color: white;
+  color: red;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~Main~~~~~~~~~~~~~~~~~~~~*/
