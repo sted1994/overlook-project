@@ -9,22 +9,24 @@ import './images/hotel_room_5.png'
 import Hotel from './classes/hotel.js'
 import User from './classes/user.js'
 import {roomPaths} from './roomImgPaths'
-//const submit = document.querySelector(".reservation-submit-btn")
+
+const submit = document.querySelector(".reservation-submit-btn")
 const date = document.querySelector(".date-search-field")
+const roomTypeInput = document.querySelector(".search-field")
 const loginButton = document.getElementById('login-button')
 const userNameInput = document.getElementById('user-name-input')
 const passwordInput = document.getElementById('password-input')
 const loginPage = document.querySelector('.home-page')
 const dashboardPage = document.querySelector('.home-page')
 const mainPage = document.querySelector('.main-page')
+const reservationPage = document.querySelector('.make-reservation-page')
 const futureReservations = document.getElementById('future-reservations')
 const pastReservations = document.getElementById('past-reservations')
 const spendingSummaryElement = document.querySelector('.spending-total')
 const userName = document.querySelector('.username')
-// submit.addEventListener('click', function(event){
-//   event.preventDefault()
-//   console.log(date.value)
-// })
+const makeNewReservatiolnButton = document.querySelector('.make-reservation')
+const filteredReservations = document.getElementById('filtered-reservations')
+
 
 let hotelData;
 let customer;
@@ -38,10 +40,20 @@ loginButton.addEventListener('click', function(event){
   event.preventDefault()
   assignUser(userNameInput.value, passwordInput.value, hotelData.customers)
     if(assignUser(userNameInput.value, passwordInput.value, hotelData.customers) === true){
-      showElement([dashboardPage, mainPage], mainPage)
+      showElement([dashboardPage, mainPage, reservationPage], mainPage)
       renderDashboard()
     }
 })
+
+makeNewReservatiolnButton.addEventListener('click', function(event) {
+  showElement([dashboardPage, mainPage, reservationPage], reservationPage)
+})
+
+submit.addEventListener('click', function(event){
+    event.preventDefault()
+    renderAvaiableRooms(date.value, roomTypeInput.value)
+    //console.log(date.value)
+  })
 
 const getCurrentDate = () =>{
   var today = new Date();
@@ -85,6 +97,22 @@ const renderCustomerName = () => {
   userName.innerText = customer.name
 }
 
+const renderAvaiableRooms = (date, roomType) => {
+  if(date && roomType === "select"){
+    filteredReservations.innerHTML = "";
+    hotelData.findRoomsAvailableByDate(date)
+    hotelData.avaiableRooms.forEach(room => {
+       filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths))
+    })
+  } else if (date && roomType !== "select"){
+    filteredReservations.innerHTML = "";
+    hotelData.findRoomTypesAvailableOnDate(roomType, date).forEach(room => {
+       filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths))
+    })
+  }
+}
+
+
 const defineHotelData = (hotelSummary) => {
   hotelData = hotelSummary
 }
@@ -117,5 +145,18 @@ const roomCard = (room, randomRoomPath) => {
       <p>Number of beds: <span class="bed">${room.numBeds}</span></p>
     </div>
     <p>Price Per Night: <span class="cost-per-night">${room.costPerNight}</span></p>
+  </article>`
+}
+
+const newReservationCard = (room, randomRoomPath) => {
+ return `<article class="reservation">
+    <p>${room.roomType}</p>
+    <img class="room-image" src="${randomRoomPath}" alt="Randomly generated image of a hotel room">
+    <div class="bed-information">
+      <p>Bed Size: <span class="bed-size">${room.bedSize}</span></p>
+      <p>Number of beds: <span class="bed">${room.numBeds}</span></p>
+    </div>
+    <p>Price Per Night: <span class="cost-per-night">${room.costPerNight}</span></p>
+    <button>Reserve This Room</button>
   </article>`
 }
