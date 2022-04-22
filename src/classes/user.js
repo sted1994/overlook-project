@@ -7,7 +7,7 @@ class User{
   }
 
   getBookings(allBookings){
-    this.bookings = allBookings.filter(booking => booking.userID === this.id)
+    return this.bookings = allBookings.filter(booking => booking.userID === this.id)
   }
 
   generateSpendingSummary(rooms){
@@ -19,8 +19,9 @@ class User{
       })
       return spent
     }, 0)
-    this.totalSpent = total
+    this.totalSpent = total.toFixed(2)
   }
+
 }
 
 export default User
