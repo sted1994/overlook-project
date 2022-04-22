@@ -7,6 +7,7 @@ class Hotel{
   }
 
   findRoomsAvailableByDate(date){
+    date = date.split("-").join("/")
     this.avaiableRooms = this.rooms
     const conflicts = this.bookings.filter(booking => (booking.date === date))
     this.avaiableRooms.forEach(room => {
@@ -38,6 +39,7 @@ class Hotel{
   }
 
   findConflicts(date, roomNumber){
+    date = date.split("-").join("/")
     const conflicts = this.bookings.filter(booking => booking.date === date && booking.roomNumber === roomNumber)
       if(conflicts.length){
         return "We are fiercly sorry, but that room is unavaiable on that date"

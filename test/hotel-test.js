@@ -24,7 +24,7 @@ describe("Hotel Tests" , function(){
 
   it("Should be able to tell you all rooms avilable to book on a date", () => {
 
-    expect(hotel.findRoomsAvailableByDate('2022/02/19').length).to.equal(10)
+    expect(hotel.findRoomsAvailableByDate('2022-02-19').length).to.equal(10)
   });
 
   it("Should be able to return all rooms that match type", () => {
@@ -33,11 +33,11 @@ describe("Hotel Tests" , function(){
   });
 
   it("should return all rooms matching type on a day", () => {
-    hotel.findRoomTypesAvailableOnDate('single room', '2022/02/19')
+    hotel.findRoomTypesAvailableOnDate('single room', '2022-02-19')
   });
 
   it("Should tell a user if the room they want is booked on the date they want", () => {
 
-    expect(hotel.findConflicts('2022/02/19', 16)).to.equal("We are fiercly sorry, but that room is unavaiable on that date")
+    expect(hotel.findConflicts('2022-02-19', 16)).to.equal("We are fiercly sorry, but that room is unavaiable on that date")
   })
 })

@@ -25,6 +25,7 @@ body {
   width: 500px;
 }
 
+.make-reservation-page,
 .home-page{
   align-items: center;
   display: flex;
@@ -117,6 +118,13 @@ body {
   height: 30px;
   margin: 0;
 }
+
+.filter-input-field{
+  margin-top: 15px;
+}
+/* .reservation-error{
+  position: relative;
+} */
 
 .hidden{
   display: none;

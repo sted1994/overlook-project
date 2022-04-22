@@ -31,6 +31,6 @@ describe('User tests', function() {
   it('Should be able to tell a user how much they have spent', function(){
     user.getBookings(data.bookings);
     user.generateSpendingSummary(data.rooms);
-    expect(user.totalSpent).to.equal(565.64)
+    expect(user.totalSpent).to.equal('565.64')
   })
 });
