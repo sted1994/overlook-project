@@ -119,6 +119,13 @@ body {
   margin: 0;
 }
 
+.filter-input-field{
+  margin-top: 15px;
+}
+/* .reservation-error{
+  position: relative;
+} */
+
 .hidden{
   display: none;
 }

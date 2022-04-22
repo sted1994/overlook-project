@@ -11,7 +11,7 @@ import User from './classes/user.js'
 import {roomPaths} from './roomImgPaths'
 
 const submit = document.querySelector(".reservation-submit-btn")
-const date = document.querySelector(".date-search-field")
+const dateInput = document.querySelector(".date-search-field")
 const roomTypeInput = document.querySelector(".search-field")
 const loginButton = document.getElementById('login-button')
 const userNameInput = document.getElementById('user-name-input')
@@ -26,8 +26,9 @@ const spendingSummaryElement = document.querySelector('.spending-total')
 const userName = document.querySelector('.username')
 const makeNewReservatiolnButton = document.querySelector('.make-reservation')
 const filteredReservations = document.getElementById('filtered-reservations')
-
-
+const resetFilterButton = document.getElementById('reset-filter-btn')
+const reservationError = document.querySelector('.reservation-error')
+const dashboard = document.querySelectorAll('.dashboard')
 let hotelData;
 let customer;
 
@@ -36,7 +37,7 @@ const promise = Promise.all([fetchRequests.getHotelData('rooms'), fetchRequests.
 
 })
 
-loginButton.addEventListener('click', function(event){
+loginButton.addEventListener('click', (event) => {
   event.preventDefault()
   assignUser(userNameInput.value, passwordInput.value, hotelData.customers)
     if(assignUser(userNameInput.value, passwordInput.value, hotelData.customers) === true){
@@ -45,14 +46,18 @@ loginButton.addEventListener('click', function(event){
     }
 })
 
-makeNewReservatiolnButton.addEventListener('click', function(event) {
+makeNewReservatiolnButton.addEventListener('click', (event) => {
   showElement([dashboardPage, mainPage, reservationPage], reservationPage)
 })
 
-submit.addEventListener('click', function(event){
+submit.addEventListener('click', (event) => {
     event.preventDefault()
-    renderAvaiableRooms(date.value, roomTypeInput.value)
-    //console.log(date.value)
+    renderAvaiableRooms(dateInput.value, roomTypeInput.value, event)
+  })
+
+  resetFilterButton.addEventListener('click', (event) =>{
+    event.preventDefault()
+    renderAvaiableRooms(dateInput.value, 'select')
   })
 
 const getCurrentDate = () =>{
@@ -97,18 +102,35 @@ const renderCustomerName = () => {
   userName.innerText = customer.name
 }
 
-const renderAvaiableRooms = (date, roomType) => {
+const renderUserError = (domElement, message) => {
+  domElement.innerText = message
+}
+
+const clearUserError = (domElement) => {
+  domElement.innerText = "";
+}
+
+const renderAvaiableRooms = (date, roomType, event) => {
   if(date && roomType === "select"){
+    clearUserError(reservationError)
     filteredReservations.innerHTML = "";
+    dateInput.value = ""
     hotelData.findRoomsAvailableByDate(date)
     hotelData.avaiableRooms.forEach(room => {
        filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths))
     })
   } else if (date && roomType !== "select"){
+    clearUserError(reservationError)
     filteredReservations.innerHTML = "";
+    dateInput.value = ""
+    roomTypeInput.value = 'select'
     hotelData.findRoomTypesAvailableOnDate(roomType, date).forEach(room => {
        filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths))
     })
+  } else {
+    filteredReservations.innerHTML = ""
+    // dashboard[1].style.justifyContent = ""
+    renderUserError(reservationError, "Please make sure to specify a date you would like to book with us")
   }
 }
 

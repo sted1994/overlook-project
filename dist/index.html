@@ -7,7 +7,7 @@
   <title>The Overlook Hotel</title>
 </head>
 <body>
-  <page class='home-page'>
+  <page class='home-page hidden'>
     <section class='login'>
       <img class="hotel-logo" src="./images/Lotus-Flower.svg" alt="Lotus logo">
       <h1>Welcome To The Overlook Hotel</h1>
@@ -46,21 +46,24 @@
       </section>
     </article>
   </page>
-  <page class="make-reservation-page hidden">
+  <page class="make-reservation-page">
     <img class="hotel-logo" src="./images/Lotus-Flower.svg" alt="Lotus logo">
     <article class="dashboard">
-      <form class="search-rooms" action="index.html" method="get">
-        <input class="date-search-field" type="date" name="" value="">
-        <select class="search-field" name="reservation-filter" id="rooms">
-          <option value="select">*Optional* Room Type</option>
-          <option value="residential suite">Residential Suite</option>
-          <option value="suite">Suite</option>
-          <option value="junior suite">Juinor Suite</option>
-          <option value="single room">Single Room</option>
-        </select>
-        <button class="reservation-submit-btn" type="submit">Find Rooms</button>
-        <button class="reset-filter-btn" type="submit">Reset Filters</button>
-      </form>
+      <div class="filter-input-field">
+        <form class="search-rooms" action="index.html" method="get">
+          <input class="date-search-field" type="date" name="" value="">
+          <select class="search-field" name="reservation-filter" id="rooms">
+            <option value="select">*Optional* Room Type</option>
+            <option value="residential suite">Residential Suite</option>
+            <option value="suite">Suite</option>
+            <option value="junior suite">Juinor Suite</option>
+            <option value="single room">Single Room</option>
+          </select>
+          <button class="reservation-submit-btn" type="submit">Find Rooms</button>
+          <button id="reset-filter-btn" class="reset-filter-btn" type="submit">Reset Filters</button>
+        </form>
+        <p class="reservation-error"></p>
+      </div>
       <div id="filtered-reservations" class="scroller">
         <!-- Where past reservations will appear -->
       </div>
