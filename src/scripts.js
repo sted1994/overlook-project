@@ -163,7 +163,7 @@ const assignUser = (userName, password, customers) => {
   }
 
 const roomCard = (room, randomRoomPath) => {
- return `<article class="reservation">
+ return `<article  tabindex="0" class="reservation">
     <p>${room.roomType}</p>
     <img class="room-image" src="${randomRoomPath}" alt="Randomly generated image of a hotel room">
     <div class="bed-information">
@@ -177,7 +177,7 @@ const roomCard = (room, randomRoomPath) => {
 const newReservationCard = (room, randomRoomPath, date) => {
   window.date = date
  return `
-  <article class="reservation">
+  <article tabindex="0" class="reservation">
     <p class="${room.number} hidden"></p>
     <p>${room.roomType}</p>
     <img class="room-image" src="${randomRoomPath}" alt="Randomly generated image of a hotel room">
@@ -186,7 +186,7 @@ const newReservationCard = (room, randomRoomPath, date) => {
       <p>Number of beds: <span class="bed">${room.numBeds}</span></p>
     </div>
     <p>Price Per Night: <span class="cost-per-night">${room.costPerNight}</span></p>
-    <button onclick="fetchRequests.makeBooking(event.target.parentElement.firstChild.nextSibling.classList[0], customer.id, date)">Reserve This Room</button>
+    <button aria-label="Reserve this ${room.roomType}" onclick="fetchRequests.makeBooking(event.target.parentElement.firstChild.nextSibling.classList[0], customer.id, date)">Reserve This Room</button>
   </article>`
 }
 
