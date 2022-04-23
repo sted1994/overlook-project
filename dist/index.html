@@ -11,11 +11,13 @@
     <section class='login'>
       <img class="hotel-logo" src="./images/Lotus-Flower.svg" alt="Lotus logo">
       <h1>Welcome To The Overlook Hotel</h1>
-      <section class="login-container">
-        <form class="login-form" action="index.html" method="get">
-          <input id="user-name-input" placeholder="Username" type="text" name="username">
-          <input id="password-input" placeholder="Password" type="text" name="password">
-          <button type="submit" id="login-button" name="login">Log In</button>
+      <section  class="login-container">
+        <form id="login-form" class="login-form" action="index.html" method="get">
+          <label for="user-name-input" class="hidden">Enter Username</label>
+          <input aria-label="Please enter a username" id="user-name-input" placeholder="Username" type="text" name="username">
+          <label for="password-input" class="hidden">Enter Password</label>
+          <input aria-label="Please enter a password" id="password-input" placeholder="Password" type="text" name="password">
+          <button aria-label="Press enter to login" type="submit" id="login-button" name="login">Log In</button>
         </form>
         <p class="login-error"></p>
       </section>
@@ -26,9 +28,9 @@
     <h2>Welcome Back <span class="username"></span></h2>
     <article class="dashboard">
       <h3>You have spent <span class="spending-total"></span> with us so far.</h3>
-      <button class="make-reservation">Make a new reservation</button>
+      <button aria-label="Press enter to be directed to new reservation page" class="make-reservation">Make a new reservation</button>
       <section class="reservations">
-        <section class="reservations-scroller">
+        <section tabindex="0" class="reservations-scroller">
           <p>Your previous Reservations:</p>
           <aside class="reservation-display">
             <div id="past-reservations" class="scroller">
@@ -36,7 +38,7 @@
             </div>
           </aside>
         </section>
-        <section class="reservations-scroller">
+        <section tabindex="0" class="reservations-scroller">
           <p>Your future Reservations:</p>
           <aside class="reservation-display">
             <div id="future-reservations" class="scroller">
@@ -51,10 +53,12 @@
     <img class="hotel-logo" src="./images/Lotus-Flower.svg" alt="Lotus logo">
     <article class="dashboard">
       <div class="filter-input-field">
-        <form class="search-rooms" action="index.html" method="get">
-          <input class="date-search-field" type="date" name="" value="">
-          <select class="search-field" name="reservation-filter" id="rooms">
-            <option value="select">*Optional* Room Type</option>
+        <form name="reservation filter form" class="search-rooms" action="index.html" method="get">
+          <label for="date-search-field" class="hidden">Select a date</label>
+          <input aria-label="Please enter a date current date selected is. " id="date-search-field" class="date-search-field" type="date" name="" value="">
+          <label for="search-field" class="hidden">Select a date</label>
+          <select aria-label="Optional room type selection" id="search-field" class="search-field" name="reservation-filter" id="rooms">
+            <option value="select">Optional</option>
             <option value="residential suite">Residential Suite</option>
             <option value="suite">Suite</option>
             <option value="junior suite">Juinor Suite</option>
