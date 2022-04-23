@@ -55,12 +55,12 @@ makeNewReservatiolnButton.addEventListener('click', (event) => {
 
 submit.addEventListener('click', (event) => {
     event.preventDefault()
-    renderAvaiableRooms(dateInput.value, roomTypeInput.value, event)
+    renderAvaiableRooms(dateInput.value, roomTypeInput.value, "submit")
   })
 
   resetFilterButton.addEventListener('click', (event) =>{
     event.preventDefault()
-    renderAvaiableRooms(dateInput.value, 'select')
+    renderAvaiableRooms(dateInput.value, 'select', "reset")
   })
 
 const getCurrentDate = () =>{
@@ -120,7 +120,7 @@ const renderAvaiableRooms = (date, roomType, event) => {
     dateInput.value = ""
     hotelData.findRoomsAvailableByDate(date)
     hotelData.avaiableRooms.forEach(room => {
-       filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths))
+       filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths), date)
     })
   } else if (date && roomType !== "select"){
     clearUserError(reservationError)
@@ -128,11 +128,12 @@ const renderAvaiableRooms = (date, roomType, event) => {
     dateInput.value = ""
     roomTypeInput.value = 'select'
     hotelData.findRoomTypesAvailableOnDate(roomType, date).forEach(room => {
-       filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths))
+       filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths), date)
     })
+  } else if(!date && event === 'submit'){
+    renderUserError(reservationError, "Please select a day on whitch you would like to stay with us")
   } else {
     filteredReservations.innerHTML = ""
-    renderUserError(reservationError, "Please make sure to specify a date you would like to book with us")
   }
 }
 
@@ -152,8 +153,9 @@ const assignUser = (userName, password, customers) => {
   const characters = userName.split('');
   const numbers = characters.filter(character => parseInt(character) || parseInt(character) === 0)
   const id = parseInt(numbers.join(''))
-    if(password === 'overlook2021' && id <= hotelData.customers.length && userName.includes('customer')){
+    if(password === 'overlook2021' && id <= hotelData.customers.length && (userName.includes('customer') || userName.includes('Customer'))){
       customer = new User(hotelData.customers.filter(customer => customer.id === id)[0])
+      window.customer = customer
       return true
     } else {
       return false
@@ -172,8 +174,11 @@ const roomCard = (room, randomRoomPath) => {
   </article>`
 }
 
-const newReservationCard = (room, randomRoomPath) => {
- return `<article class="reservation">
+const newReservationCard = (room, randomRoomPath, date) => {
+  window.date = date
+ return `
+  <article class="reservation">
+    <p class="${room.number} hidden"></p>
     <p>${room.roomType}</p>
     <img class="room-image" src="${randomRoomPath}" alt="Randomly generated image of a hotel room">
     <div class="bed-information">
@@ -181,6 +186,9 @@ const newReservationCard = (room, randomRoomPath) => {
       <p>Number of beds: <span class="bed">${room.numBeds}</span></p>
     </div>
     <p>Price Per Night: <span class="cost-per-night">${room.costPerNight}</span></p>
-    <button>Reserve This Room</button>
+    <button onclick="fetchRequests.makeBooking(event.target.parentElement.firstChild.nextSibling.classList[0], customer.id, date)">Reserve This Room</button>
   </article>`
 }
+
+
+window.fetchRequests = fetchRequests
