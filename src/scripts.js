@@ -50,6 +50,9 @@ loginButton.addEventListener('click', (event) => {
 })
 
 makeNewReservatiolnButton.addEventListener('click', (event) => {
+  const test = JSON.stringify(getCurrentDate())
+  test.split(",")[0]
+  dateInput.min = test.slice(0, 4) + '-' + test.slice(4, 6) + '-' + test.slice(6, 8)
   showElement([dashboardPage, mainPage, reservationPage], reservationPage)
 })
 
