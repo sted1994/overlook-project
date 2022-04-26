@@ -1,6 +1,3 @@
-/* *{
-  border: 1px solid red
-} */
 body {
   background: url(../images/Overlook.png);
 
@@ -131,8 +128,6 @@ body {
   margin-top: 15px;
 
 }
-
-
 
 .hidden{
   display: none;
