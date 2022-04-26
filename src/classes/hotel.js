@@ -7,17 +7,16 @@ class Hotel{
   }
 
   findRoomsAvailableByDate(date){
+    let roomsAvaibleByDate = []
     date = date.split("-").join("/")
     this.avaiableRooms = this.rooms
-    const conflicts = this.bookings.filter(booking => (booking.date === date))
-    this.avaiableRooms.forEach(room => {
-      conflicts.forEach(conflict => {
-        if(conflict.roomNumber === room.number){
-          this.avaiableRooms.splice(this.avaiableRooms.indexOf(room), 1)
-        }
-      })
+    const conflicts = this.bookings.filter(booking => (booking.date === date)).map(booking => booking.roomNumber)
+    this.avaiableRooms.forEach((room, index) => {
+      if(!conflicts.includes(room.number)){
+        roomsAvaibleByDate.push(room)
+      }
     })
-    return this.avaiableRooms
+    return roomsAvaibleByDate
   };
 
   findRoomsByType(type){
@@ -25,8 +24,8 @@ class Hotel{
   };
 
   findRoomTypesAvailableOnDate(type, date){
-    const roomsMatchingType = this.findRoomsByType(type);
     const roomsAvaibleByDate = this.findRoomsAvailableByDate(date);
+    const roomsMatchingType = this.findRoomsByType(type);
     const roomsByTypeAndDate = roomsMatchingType.reduce((searchResult, room) => {
       roomsAvaibleByDate.forEach(roomByDate => {
         if(room.number === roomByDate.number){
