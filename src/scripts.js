@@ -122,7 +122,8 @@ const renderAvaiableRooms = (date, roomType, event) => {
     filteredReservations.innerHTML = "";
     dateInput.value = ""
     hotelData.findRoomsAvailableByDate(date)
-    hotelData.avaiableRooms.forEach(room => {
+    hotelData.avaiableRooms.length > 0
+      hotelData.avaiableRooms.forEach(room => {
        filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths), date)
     })
   } else if (date && roomType !== "select"){
@@ -130,9 +131,11 @@ const renderAvaiableRooms = (date, roomType, event) => {
     filteredReservations.innerHTML = "";
     dateInput.value = ""
     roomTypeInput.value = 'select'
-    hotelData.findRoomTypesAvailableOnDate(roomType, date).forEach(room => {
-       filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths), date)
-    })
+    if(hotelData.findRoomTypesAvailableOnDate(roomType, date).length > 0){
+      hotelData.findRoomTypesAvailableOnDate(roomType, date).forEach(room => filteredReservations.innerHTML += newReservationCard(room, getRandomRoomImg(roomPaths), date))
+    } else {
+      renderUserError(reservationError, "We are so sorry, but all rooms meeting these criteria are booked.")
+    }
   } else if(!date && event === 'submit'){
     renderUserError(reservationError, "Please select a day on whitch you would like to stay with us")
   } else {
@@ -177,6 +180,13 @@ const roomCard = (room, randomRoomPath) => {
   </article>`
 }
 
+const addBooking = (roomNumber, userId, date) => {
+  date = date.split("-").join("/")
+  fetchRequests.makeBooking(roomNumber, userId, date)
+  filteredReservations.innerHTML = ""
+  renderUserError(reservationError, "Thank you for making a reservation with us.")
+}
+
 const newReservationCard = (room, randomRoomPath, date) => {
   window.date = date
  return `
@@ -189,9 +199,12 @@ const newReservationCard = (room, randomRoomPath, date) => {
       <p>Number of beds: <span class="bed">${room.numBeds}</span></p>
     </div>
     <p>Price Per Night: <span class="cost-per-night">${room.costPerNight}</span></p>
-    <button aria-label="Reserve this ${room.roomType}" onclick="fetchRequests.makeBooking(event.target.parentElement.firstChild.nextSibling.classList[0], customer.id, date)">Reserve This Room</button>
+    <button aria-label="Reserve this ${room.roomType}" onclick="addBooking(event.target.parentElement.firstChild.nextSibling.classList[0], customer.id, date)">Reserve This Room</button>
   </article>`
 }
 
+window.addBooking = addBooking
+window.promise = promise;
+window.fetchRequests = fetchRequests;
 
-window.fetchRequests = fetchRequests
+export {hotelData}

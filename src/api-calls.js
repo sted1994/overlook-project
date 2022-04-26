@@ -1,4 +1,4 @@
-
+import { hotelData} from './scripts'
 
 const fetchRequests = {
   getHotelData(path){
@@ -7,7 +7,6 @@ const fetchRequests = {
       .then(data => {
         return data
       })
-      // console.log(result)
       return result
   },
   getUser(id){
@@ -30,12 +29,18 @@ const fetchRequests = {
     }),
     headers: {
       'Content-Type': 'application/json'
-    }
-  }).then(response => response.json()).then(data => console.log(data.message))
-
+    }})
+    .then(response => response.json())
+    .then(data => {
+    console.log(data.message)
+    return data
+    })
+    .then(test => fetchRequests.getHotelData('bookings'))
+    .then(result => hotelData.bookings = result.bookings)
   },
 
 }
 
+window.fetchRequests = fetchRequests
 
 export { fetchRequests }
