@@ -69,7 +69,6 @@ resetFilterButton.addEventListener('click', (event) =>{
 })
 
 returnToDashButton.addEventListener('click', () => {
-  console.log('test')
   showElement([dashboardPage, mainPage, reservationPage], mainPage)
   renderDashboard()
 })

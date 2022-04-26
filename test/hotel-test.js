@@ -29,7 +29,7 @@ describe("Hotel Tests" , function(){
 
   it("Should be able to return all rooms that match type", () => {
 
-    expect(hotel.findRoomsByType('single room').length).to.equal(6)
+    expect(hotel.findRoomsByType('single room').length).to.equal(7)
   });
 
   it("should return all rooms matching type on a day", () => {
