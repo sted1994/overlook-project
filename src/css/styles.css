@@ -126,11 +126,13 @@ body {
 }
 
 .filter-input-field{
+  display: flex;
+  flex-direction: column;
   margin-top: 15px;
+
 }
-/* .reservation-error{
-  position: relative;
-} */
+
+
 
 .hidden{
   display: none;

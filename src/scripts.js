@@ -30,6 +30,8 @@ const resetFilterButton = document.getElementById('reset-filter-btn')
 const reservationError = document.querySelector('.reservation-error')
 const dashboard = document.querySelectorAll('.dashboard')
 const loginError = document.querySelector('.login-error')
+const returnToDashButton = document.querySelector('.return-to-dashboard')
+
 let hotelData;
 let customer;
 
@@ -61,10 +63,16 @@ submit.addEventListener('click', (event) => {
     renderAvaiableRooms(dateInput.value, roomTypeInput.value, "submit")
   })
 
-  resetFilterButton.addEventListener('click', (event) =>{
-    event.preventDefault()
-    renderAvaiableRooms(dateInput.value, 'select', "reset")
-  })
+resetFilterButton.addEventListener('click', (event) =>{
+  event.preventDefault()
+  renderAvaiableRooms(dateInput.value, 'select', "reset")
+})
+
+returnToDashButton.addEventListener('click', () => {
+  console.log('test')
+  showElement([dashboardPage, mainPage, reservationPage], mainPage)
+  renderDashboard()
+})
 
 const getCurrentDate = () =>{
   var today = new Date();
